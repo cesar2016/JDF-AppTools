@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+=======
+[1121/145800.000:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1121/201241.528:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[1204/192900.830:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+>>>>>>> 21f9113d359f8539a4c12eae3821c5c18ac4272a

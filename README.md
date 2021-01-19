@@ -1,4 +1,7 @@
-# MARKET TOOLS
+# JDF-ToolsApp
+<p align='left'>
+    <img src='https://i.ibb.co/VJVg0g3/jdf-portada.png' </img>
+</p>
 - Aplicacion web hecha a medida, pedida por empresa que se dedica a arrendar herramientas de todo tipo. Con esta cencilla pero potente app el cliente a logrado llevar estricto contro del alquiler de sus herraientas.
 
 # Se ha logrado resolver con MARKET TOOLS:
@@ -54,6 +57,23 @@ Se debe reemplazar `usuariodepostgres` y `passwordDePostgres` con sus propias cr
 El contenido de `client` fue creado usando: Create React App.
 
 ### cesars.pro@gmail.com
+
+<p align='left'>
+    <img src='https://i.ibb.co/9cpH4hj/add-Client.png' </img>
+</p>
+<p align='left'>
+    <img src='https://i.ibb.co/nkKNWx3/chua.png' </img>
+</p>
+<p align='left'>
+    <img src='https://i.ibb.co/qsG1mNs/herramientas.png' </img>
+</p>
+<p align='left'>
+    <img src='https://i.ibb.co/GH91Ktq/home.png' </img>
+</p>
+<p align='left'>
+    <img src='https://i.ibb.co/VVj3p5f/Tools.png' </img>
+</p>
+
 
  
 

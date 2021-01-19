@@ -4,7 +4,7 @@
 </p>
 - Aplicacion web hecha a medida, pedida por empresa que se dedica a arrendar herramientas de todo tipo. Con esta cencilla pero potente app el cliente a logrado llevar estricto contro del alquiler de sus herraientas.
 
-# Se ha logrado resolver con MARKET TOOLS:
+# Se ha logrado resolver con JDF-ToosApp:
 * Control de Stock
 * Control de Cuentas Ctes de clientes
 * Control de vencimientos (alertas indicando fechas de caducidad de alquileres)

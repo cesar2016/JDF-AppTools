@@ -237,8 +237,8 @@ server.post("/registerhd", (req, res) => {
   Tools.create(tool4);
 
   const user1 = {
-    username: "admin",
-    password: "admin",
+    username: "jdf-admin",
+    password: "jdf123",
   };
   User.create(user1);
 

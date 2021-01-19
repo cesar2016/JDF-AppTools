@@ -24,6 +24,7 @@ server.get("/:id", (req, res, next) => {
 });
 
 server.post("/insertTools", (req, res, next) => {
+  console.log('a ver qu etool viene ',req.body)
   Tools.create(req.body).then((date) => {
     res.send(date);
   });
@@ -31,8 +32,8 @@ server.post("/insertTools", (req, res, next) => {
 
 server.put("/update/:id", (req, res, next) => {
   const { name, description, stock, stocktotal, categoryId } = req.body;
-  //console.log(name, description, stock, categoryId)
-  Tools.findOne({ where: { name: req.params.id } })
+  console.log(name, description, stock, categoryId)
+  Tools.findOne({ where: { id: req.params.id } })
     .then((tools) => {
       tools.update({
         name,

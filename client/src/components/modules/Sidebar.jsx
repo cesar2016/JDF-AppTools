@@ -11,6 +11,7 @@ import BuildIcon from '@material-ui/icons/Build';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 import BusinessCenter from '@material-ui/icons/BusinessCenter';
+import { Link } from "react-router-dom";
  
 import { cargardb } from '../../actions/index';
 import { connect } from 'react-redux';
@@ -52,29 +53,30 @@ function ClippedDrawer({cargardb}) {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            <ListItemLink href="/home">
+            <ListItem button component={Link} to="/home">
               <ListItemIcon className={classes.topografy} ><HomeIcon/></ListItemIcon>
               <ListItemText primary='Inicio' />
-            </ListItemLink>
+            </ListItem>
+            
           </List>
           <Divider/>
           <List>
-            <ListItemLink href="/home/customers">
+            <ListItem button component={Link} to="/home/customers">
               <ListItemIcon><PeopleIcon/></ListItemIcon>
               <ListItemText primary='Clientes' />
-            </ListItemLink>
+            </ListItem>
           </List>
           <List>
-            <ListItemLink href="/home/tools">
+            <ListItem button component={Link} to="/home/tools">
               <ListItemIcon><BuildIcon/></ListItemIcon>
               <ListItemText primary='Herramientas' />
-            </ListItemLink>
+            </ListItem>
           </List>
           <List>
-            <ListItemLink href="/home/orders">
+            <ListItem button component={Link} to="/home/orders">
               <ListItemIcon><BusinessCenter/></ListItemIcon>
               <ListItemText primary='Alquileres' />
-            </ListItemLink>
+            </ListItem>
           </List>
           <List>
             <ListItemLink>

@@ -35,7 +35,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl'; 
 import Badge from '@material-ui/core/Badge';
 
-import { getAllTools, insertTools, allOrder, updateOrder, deleteTools, getClient, clientOrder, toolsOrder, deleteOrder } from '../../actions/index';
+import { updateStock, getAllTools, insertTools, allOrder, updateOrder, deleteTools, getClient, clientOrder, toolsOrder, deleteOrder } from '../../actions/index';
  
 //Modal
 import Button from '@material-ui/core/Button';
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme)=>({
   },
 }))
  
-function Orders({ getAllTools, all_tools, allOrder, all_order, deleteOrder, all_client, getClient, updateOrder}) {
+function Orders({updateStock, getAllTools, all_tools, allOrder, all_order, deleteOrder, all_client, getClient, updateOrder}) {
     useEffect(() => {
     getAllTools();     
     allOrder();
@@ -190,6 +190,16 @@ const handleCancel = function(id){
     status: false,
     id: id,
   }
+  
+  let orderEliminada = all_order.filter((orderDelete) => orderDelete.id == id);
+  let nameToolOrderDelete = all_tools.filter((lasTools) => lasTools.name == orderEliminada[0].tool);
+
+  var idToolUpdateStock = nameToolOrderDelete[0].id;
+  var stockExistente = nameToolOrderDelete[0].stock;
+  var stockDevuelto = orderEliminada[0].cant;
+
+  var sumaStock = stockDevuelto + stockExistente;
+
   Swal.fire({
     title: 'Quieres terminar esta orden?',
     text: "No vas a poder revertir esto!",
@@ -200,6 +210,8 @@ const handleCancel = function(id){
     confirmButtonText: 'Confirmar'
   }).then((result) => {
     if (result.isConfirmed) {
+      updateStock(sumaStock, idToolUpdateStock)
+      getAllTools()
       updateOrder(body).then(value =>  allOrder())
       setOpen(false)
       Swal.fire(
@@ -602,7 +614,9 @@ const handleSubmit = function(e){
       getClient: ()=> dispatch(getClient()),
       clientOrder: (input)=> dispatch(clientOrder(input)),
       toolsOrder: (inputTools)=> dispatch(toolsOrder(inputTools)), 
-      deleteOrder: (id)=> dispatch(deleteOrder(id)), 
+      deleteOrder: (id)=> dispatch(deleteOrder(id)),
+      updateStock: (cant, id)=> dispatch(updateStock(cant, id))
+      
       
     }
   }

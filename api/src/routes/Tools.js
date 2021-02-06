@@ -31,8 +31,8 @@ server.post("/insertTools", (req, res, next) => {
 });
 
 server.put("/update/:id", (req, res, next) => {
-  const { name, description, stock, stocktotal, categoryId } = req.body;
-  console.log(name, description, stock, categoryId)
+  const { name, description, stock, stocktotal, categoryId, orderId } = req.body;
+  console.log(name, description, stock, categoryId, orderId)
   Tools.findOne({ where: { id: req.params.id } })
     .then((tools) => {
       tools.update({
@@ -41,6 +41,7 @@ server.put("/update/:id", (req, res, next) => {
         stocktotal,
         stock,
         categoryId,
+        orderId
       });
       return tools;
     })

@@ -23,6 +23,7 @@ import {
   updateTools,
   order,
   updateStock,
+  all_tools
 } from "../../actions/index";
 import { connect } from "react-redux";
 
@@ -80,18 +81,23 @@ function Alquilar({
     price: "",
     commentA: "",
   });
-
-  if (input.idTool) {
+   
+  if (input.idTool && input.cant) {
+    console.log('IDtOLLL ',input.idTool)
+    getAllTools()
     let herramientas = all_tools.filter((el) => el.name == input.idTool);
 
-    setStock(herramientas[0].stock);
-    /* console.log("ID DE TOOOOL ",stock) */
+    setStock(herramientas[0].stock);       
     setInput({
       ...input,
       idTool: null,
     });
+    
+    global.idToolsGood = herramientas[0].id;
+    getAllTools()   
+    
   }
-  /*  console.log("ID DE TOOOOL 2222 ",stock) */
+   
 
   const handleChange = (e) => {
     setInput({
@@ -112,14 +118,27 @@ function Alquilar({
   const handleSubmit = function (e) {
     e.preventDefault();
     order(input);
+    getAllTools()
+
     Swal.fire({
       icon: "success",
       title: "Orden agregada correctamente!",
       showConfirmButton: false,
       timer: 1500,
     });
-    updateStock(stock - input.cant, input.tool);
+
+
+    updateStock(stock - input.cant, global.idToolsGood);
+    getAllTools()
+
+    document.getElementById("formOrders").reset();
+    document.getElementById("client").innerHTML = "";
+    document.getElementById("herramienta").innerHTML = "";
+
+    
   };
+
+   
 
   const handleFechaFin = function () {
     const inicio = document.getElementById("fdesde").value;
@@ -156,7 +175,7 @@ function Alquilar({
         </Link>
         <Typography color="textPrimary">Herramientas</Typography>
       </Breadcrumbs>
-      <form onSubmit={handleSubmit}>
+      <form id="formOrders" onSubmit={handleSubmit}>
         <div className={classes.root}>
           <TextField
             id="client"
@@ -167,14 +186,16 @@ function Alquilar({
             onChange={handleChange}
             helperText="Selecciones un cliente"
             variant="outlined"
-          >
+          >       
+            
             {all_client
-              ? all_client.map((option) => (
-                  <MenuItem value={option.id}>
-                    {option.name + " " + option.lastname}
+              ? all_client.map((option) => (                
+                  <MenuItem id="sel1" value={option.id}>
+                   {option.name + " " + option.lastname} 
                   </MenuItem>
+                  
                 ))
-              : "No hay clientes cargados"}
+              : "No hay clientes cargados"}              
           </TextField>
 
           <TextField
@@ -288,7 +309,7 @@ function Alquilar({
                 color="primary"
                 className={classes.button}
                 endIcon={<Icon>send</Icon>}
-                alignItems="flex-start"
+                alignItems="flex-start"    
               >
                 ENVIAR
               </Button>
@@ -308,6 +329,7 @@ const mapDispatchToProps = (dispatch) => {
     updateTools: (tools) => dispatch(updateTools(tools)),
     order: (data) => dispatch(order(data)),
     updateStock: (stock, cantidad) => dispatch(updateStock(stock, cantidad)),
+    getAllTools: () => dispatch(getAllTools())
   };
 };
 
@@ -316,6 +338,7 @@ const mapStateToProps = (state) => {
     all_tools: state.all_tools,
     all_client: state.all_client,
     orders: state.orders,
+    getAllTools: state.getAllTools
   };
 };
 

@@ -139,7 +139,7 @@ function Tools({
         name: document.getElementById("name").value,
         description: document.getElementById("description").value,
         stock: document.getElementById("stock").value,
-        stocktotal: document.getElementById("stock").value,
+        //stocktotal: document.getElementById(11).value,
         categoryId: document.getElementById("categoryId").value,
       };
       global.data = data;

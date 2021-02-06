@@ -181,6 +181,7 @@ export function userLogout() {
 
 export function insertTools(tools) {
   console.log("EL insertTOOLS llega", tools);
+  tools.stocktotal = tools.stock;
   return function (dispatch) {
     return axios
       .post(`http://localhost:3005/tools/insertTools`, tools, {
@@ -287,7 +288,7 @@ export function deleteTools(id) {
 }
 
 export function order(order) {
-  console.log("Order tiene ", order);
+  console.log("Order Envia ", order);
   return function (dispatch) {
     return axios
       .post(`http://localhost:3005/orders`, order, { withCredentials: true })
@@ -303,7 +304,7 @@ export function order(order) {
 }
 
 export function allOrder() {
-  console.log("Order ALL_ORDER ", order);
+  //console.log("Order ALL_ORDER ", order);
   return function (dispatch) {
     return axios
       .get(`http://localhost:3005/orders`, { withCredentials: true })
@@ -354,11 +355,14 @@ export function toolsOrder(toolsOrder) {
 }
 
 export function updateStock(cantidad, id) {
-  console.log("El UPDATE_TOOLS llegaaaa actions 326", cantidad, id);
+  console.log("El UPDATE_TOOLS llegaaaa cantidad", cantidad);
+  console.log("El UPDATE_TOOLS llegaaaa ID", id);
   let stock = { stock: cantidad };
+  let orderId = {orderId: 1 }
+  let status = {status: true}
   return function (dispatch) {
     return axios
-      .put(`http://localhost:3005/tools/update/${id}`, stock, {
+      .put(`http://localhost:3005/tools/update/${id}`, stock, orderId, status, {
         withCredentials: true,
       })
       .then((result) => result.data)
@@ -367,7 +371,7 @@ export function updateStock(cantidad, id) {
           type: UPDATE_STOCK,
           payload: data,
         });
-        //console.log("El UPDATE_TOOLS", data)
+        console.log("El UPDATE_TOOLS Devuelve", data)
       });
   };
 }
